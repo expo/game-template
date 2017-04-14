@@ -13,12 +13,11 @@ const THREEView = Exponent.createTHREEViewClass(THREE);
 
 import Assets from '../Assets';
 
-
 //// Game
 
 // Render the game as a `View` component.
 
-export default (viewProps) => {
+export default viewProps => {
   //// Camera
 
   // An orthographic projection from 3d to 2d can be viewed as simply dropping
@@ -35,14 +34,16 @@ export default (viewProps) => {
   // on the phone screen's aspect ratio.
   const width = 4;
   const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
-  const height = (screenHeight / screenWidth) * width;
+  const height = screenHeight / screenWidth * width;
   const camera = new THREE.OrthographicCamera(
-    -width / 2, width / 2,
-    height / 2, -height / 2,
-    1, 10000,
+    -width / 2,
+    width / 2,
+    height / 2,
+    -height / 2,
+    1,
+    10000
   );
   camera.position.z = 1000;
-
 
   //// Scene, sprites
 
@@ -68,8 +69,8 @@ export default (viewProps) => {
   texture.needsUpdate = true;
   const material = new THREE.MeshBasicMaterial({
     map: texture,
-    color: 0xff0000,    // Sprites can be tinted with a color.
-    transparent: true,  // Use the image's alpha channel for alpha.
+    color: 0xff0000, // Sprites can be tinted with a color.
+    transparent: true, // Use the image's alpha channel for alpha.
   });
 
   // 3: Mesh
@@ -82,18 +83,17 @@ export default (viewProps) => {
   // Geometries and materials can be reused.
   const mesh2 = new THREE.Mesh(geometry, material);
   mesh2.position.x = mesh2.position.y = 0.5;
-  mesh2.position.z = -40;     // This puts this sprite behind our previous one.
+  mesh2.position.z = -40; // This puts this sprite behind our previous one.
   mesh2.rotation.z = Math.PI;
   scene.add(mesh2);
-
 
   //// Events
 
   // This function is called every frame, with `dt` being the time in seconds
   // elapsed since the last call.
-  const tick = (dt) => {
+  const tick = dt => {
     mesh.rotation.z += 2 * dt;
-  }
+  };
 
   // These functions are called on touch and release of the view respectively.
   const touch = (_, gesture) => {
@@ -101,8 +101,7 @@ export default (viewProps) => {
   };
   const release = (_, gesture) => {
     material.color.setHex(0xff0000);
-  }
-
+  };
 
   //// React component
 
@@ -126,6 +125,3 @@ export default (viewProps) => {
     />
   );
 };
-
-
-

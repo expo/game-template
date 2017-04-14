@@ -13,12 +13,11 @@ const THREEView = Exponent.createTHREEViewClass(THREE);
 
 import Assets from '../Assets';
 
-
 //// Game
 
 // Render the game as a `View` component.
 
-export default (viewProps) => {
+export default viewProps => {
   const scene = new THREE.Scene();
 
   const camera = new THREE.PerspectiveCamera(75, 1, 1, 10000);
@@ -36,17 +35,17 @@ export default (viewProps) => {
   const mesh = new THREE.Mesh(geometry, material);
   scene.add(mesh);
 
-  const tick = (dt) => {
+  const tick = dt => {
     mesh.rotation.x += 1 * dt;
     mesh.rotation.y += 2 * dt;
-  }
+  };
 
   const touch = (_, gesture) => {
     material.color.setHex(0x00ff00);
   };
   const release = (_, gesture) => {
     material.color.setHex(0xff0000);
-  }
+  };
 
   const panResponder = PanResponder.create({
     onStartShouldSetPanResponder: () => true,
@@ -65,6 +64,3 @@ export default (viewProps) => {
     />
   );
 };
-
-
-

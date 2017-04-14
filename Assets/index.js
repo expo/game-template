@@ -7,8 +7,12 @@ import Exponent from 'exponent';
 // Map of asset names to modules. List your assets here.
 const modules = {
   'player-sprite': require('./avatar2.png'),
-}
+};
 
 // Export map of asset names to `Exponent.Asset` objects.
-export default Object.assign({}, ...Object.keys(modules).map((name) =>
-  ({ [name]: Exponent.Asset.fromModule(modules[name]) })));
+export default Object.assign(
+  {},
+  ...Object.keys(modules).map(name => ({
+    [name]: Exponent.Asset.fromModule(modules[name]),
+  }))
+);
