@@ -27,9 +27,7 @@ class App extends React.Component {
   async load() {
     try {
       // Load assets
-      await Promise.all(
-        Object.keys(Assets).map(name => Assets[name].downloadAsync())
-      );
+      await Promise.all(Object.keys(Assets).map(name => Assets[name].downloadAsync()));
 
       // We're good to go!
       this.setState({ loaded: true });
@@ -39,9 +37,7 @@ class App extends React.Component {
   }
 
   render() {
-    return this.state.loaded
-      ? <Game style={{ flex: 1 }} />
-      : <Exponent.Components.AppLoading />;
+    return this.state.loaded ? <Game style={{ flex: 1 }} /> : <Exponent.Components.AppLoading />;
   }
 }
 
