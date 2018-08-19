@@ -7,7 +7,7 @@ const THREE = require('three');
 
 // `THREEView` wraps a `GLView` and creates a THREE renderer that uses
 // that `GLView`. The class needs to be constructed with a factory so that
-// the `THREE` module can be injected without exponent-sdk depending on the
+// the `THREE` module can be injected without `expo` depending on the
 // `'three'` npm package.
 const THREEView = Exponent.createTHREEViewClass(THREE);
 
